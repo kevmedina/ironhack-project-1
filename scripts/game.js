@@ -8,8 +8,15 @@ class Game {
         this.height = 600;
         this.ball = new Ball();
         this.backgroundImg = new Image();
+        this.gameOverImg = new Image();
+        this.gameOverImg.src = "./images/gameOver.png";
+        this.youWinImg = new Image();
+        this.youWinImg.src = "./images/youWin.png";
+        this.homeScreenImg = new Image();
+        this.homeScreenImg.src = "./images/home.png";
         this.paddle = new Paddle(this);
         this.brick = new Brick();
+        this.gamePaused = false;
         this.interval;
     }
 
@@ -19,6 +26,7 @@ class Game {
 
     startGame() {
         this.clear();
+        // this.ctx.drawImage(this.homeScreenImg, this.x, this.y, this.width, this.height);
         this.ctx.fillStyle = "blue";
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.font = "50px Arial";
@@ -55,13 +63,7 @@ class Game {
 
     drawBackground() {
         this.backgroundImg.src = "./images/background.png";
-        this.ctx.drawImage(
-            this.backgroundImg,
-            this.x,
-            this.y,
-            this.width,
-            this.height
-        );
+        this.ctx.drawImage(this.backgroundImg, this.x, this.y, this.width, this.height);
     }
 
     clear() {
@@ -71,25 +73,15 @@ class Game {
     gameOver() {
         if(this.ball.lives === 0) {
             this.clear();
-            this.ctx.fillStyle = "black";
-            this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-            this.ctx.font = "50px Arial";
-            this.ctx.fillStyle = "white"
-            this.ctx.textAlign = "center";
-            this.ctx.fillText("GAME OVER!", canvas.width/2, canvas.height/2);
+            this.ctx.drawImage(this.gameOverImg, this.x, this.y, this.width, this.height);
             clearInterval(this.interval);
         }
     }
 
     youWin() {
-        if(this.brick.score === 27) {
+        if(this.brick.score === 36) {
             this.clear();
-            this.ctx.fillStyle = "green";
-            this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-            this.ctx.font = "50px Arial";
-            this.ctx.fillStyle = "white"
-            this.ctx.textAlign = "center";
-            this.ctx.fillText("YOU WIN!", canvas.width/2, canvas.height/2);
+            this.ctx.drawImage(this.youWinImg, this.x, this.y, this.width, this.height);
             clearInterval(this.interval);
         }
     }

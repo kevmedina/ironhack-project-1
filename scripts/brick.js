@@ -5,16 +5,16 @@ class Brick extends Component {
         this.canvas = document.getElementById("canvas");
         this.ctx = this.canvas.getContext("2d");
         this.rows = 3;
-        this.columns = 9;
-        this.width = 80;
+        this.columns = 12;
+        this.width = 60;
         this.height = 30;
-        this.padding = 10;
+        this.padding = 5;
         this.offsetTop = 30;
-        this.offsetLeft = 50;
+        this.offsetLeft = 60;
         this.bricks = [];
         this.score = 0;
         this.brickSound = new Audio();
-        this.brickSound.src = "./sounds/brick_break.wav";
+        this.brickSound.src = "./sounds/brick_short.mp3";
     }
 
     buildBricks() {
@@ -35,7 +35,7 @@ class Brick extends Component {
                     this.bricks[c][r].x = brickX;
                     this.bricks[c][r].y = brickY;
                     this.ctx.beginPath();
-                    this.ctx.rect(brickX, brickY, this.width ,  this.height);
+                    this.ctx.rect(brickX, brickY, this.width , this.height);
                     this.ctx.fillStyle = "#654321";
                     this.ctx.fill();
                     this.ctx.closePath();

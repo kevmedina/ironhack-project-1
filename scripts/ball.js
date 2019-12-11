@@ -23,6 +23,7 @@ class Ball extends Component {
     reset() {
         this.x = 20;
         this.y = 300;
+        this.dy = -this.dy;
     }
 
     moveBall() {
