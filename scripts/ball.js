@@ -11,7 +11,8 @@ class Ball extends Component {
         this.ballRadius = 10;   
         this.lives = 3;
     }
-    
+
+    // draws the ball to the canvas
     drawBall() {
         this.ctx.beginPath();
         this.ctx.arc(this.x, this.y, this.ballRadius, 0, 6.3);
@@ -20,22 +21,24 @@ class Ball extends Component {
         this.ctx.closePath();
     }
 
+    // resets the position of the ball when a life is lost
     reset() {
         this.x = 20;
         this.y = 300;
         this.dy = -this.dy;
     }
 
+    // moves the ball on the canvas
     moveBall() {
         this.drawBall();
 
         if(this.x + this.dx > canvas.width - this.ballRadius || this.x + this.dx < this.ballRadius) {
             this.dx = -this.dx;
         }
-        if(this.y + this.dy < this.ballRadius) {
+        else if(this.y + this.dy < this.ballRadius) {
             this.dy = -this.dy;
         }
-        if(this.y + this.dy > canvas.height - this.ballRadius) {
+        else if(this.y + this.dy > canvas.height - this.ballRadius) {
             this.lives--;
             document.getElementById('lives').innerHTML = `${this.lives}`;
             this.reset();

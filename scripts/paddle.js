@@ -4,13 +4,14 @@ class Paddle extends Component {
         this.game = game;
         this.x = 370;
         this.y = 570;
-        this.width = 140;
+        this.width = 150;
         this.height = 20;
         this.dx = 60;
         this.paddleSound = new Audio();
         this.paddleSound.src = "./sounds/ballPaddle.wav";
     }
     
+    // draws the paddle to the canvas
     drawPaddle() {
         this.game.ctx.beginPath();
         this.game.ctx.fillStyle = "#34d2eb";
@@ -18,6 +19,7 @@ class Paddle extends Component {
         this.game.ctx.closePath();
     }
 
+    // moves the paddle horizontally on the canvas
     move() {
         document.onkeydown = event => {
             const key = event.keyCode;
@@ -42,6 +44,7 @@ class Paddle extends Component {
         };
     }
 
+    // collision detection between the ball and the paddle
     detectCollision(ball) {
         if(ball.y > this.y && ball.y < this.y + this.height && ball.x > this.x && ball.x < this.x + this.width){
             ball.dy = -ball.dy;

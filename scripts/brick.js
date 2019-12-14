@@ -17,6 +17,7 @@ class Brick extends Component {
         this.brickSound.src = "./sounds/brick_short.mp3";
     }
 
+    // build the wall of bricks to the canvas
     buildBricks() {
         for(let c = 0; c < this.columns; c++) {
             this.bricks[c] = [];
@@ -26,6 +27,7 @@ class Brick extends Component {
         }
     }
 
+    // draws the wall of bricks to the canvas
     drawBricks() {
         for(let c = 0; c < this.columns; c++) {
             for(let r = 0; r < this.rows; r++) {
@@ -44,6 +46,7 @@ class Brick extends Component {
         }
     }
 
+    // collision detection between the ball and bricks
     detectCollision(ball) {
         for (let c = 0; c < this.columns; c++) {
             for (let r = 0; r < this.rows; r++) {

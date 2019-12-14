@@ -27,12 +27,19 @@
     right: 18%;
 }
 
-/* #restart {
-    width: 100px;
-    height: 50px;
-    background-color: red;
+#buttons {
     position: absolute;
-    bottom: 10%;
-    left: 50%;
-} */
+    top: 10%;
+    left: 46%;
+    color: red;
+}
+
+#restart {
+    background-color: transparent;
+    color: red;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
 
