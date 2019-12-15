@@ -17,6 +17,8 @@ class Game {
         this.paddle = new Paddle(this);
         this.brick = new Brick();
         this.interval;
+        this.leveled = false;
+        this.level = 1;
     }
 
     // initiates the home screen 
@@ -32,7 +34,6 @@ class Game {
             this.ctx.font = "40px Arial";
             this.ctx.fillStyle = "white";
             this.ctx.textAlign = "center";
-            this.ctx.fillText("BRICK BREAKER", canvas.width/2, canvas.height/2.4);
             this.ctx.font = "28px Arial";
             this.ctx.fillText("PRESS SPACE BAR TO CONTINUE", canvas.width/2, canvas.height/1.02);
         }
@@ -50,10 +51,11 @@ class Game {
         this.clear();
         this.ctx.fillStyle = "green";
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.font = "24px Arial";
+        this.ctx.font = "32px Arial";
         this.ctx.fillStyle = "white";
         this.ctx.textAlign = "center";
         this.ctx.fillText("INSTRUCTIONS", canvas.width/2, canvas.height/5);
+        this.ctx.font = "24px Arial";
         this.ctx.fillText("Smash all the bricks by bouncing the ball off the paddle", canvas.width/2, canvas.height/3);
         this.ctx.fillText("The paddle moves horizontally using the left and right arrows on the keyboard", canvas.width/2, canvas.height/2);
         this.ctx.fillText("You start with three lives and lose a life if the ball hits the bottom of the screen", canvas.width/2, canvas.height/1.5);
@@ -75,13 +77,21 @@ class Game {
         this.interval = setInterval(() => { 
             this.clear();
             this.drawBackground();
-            this.ball.moveBall();
+            if(this.leveled) {
+                setTimeout(() => {
+                    this.ball.moveBall;
+                    this.leveled = false;
+                }, 2000);
+            }
+            else {
+                this.ball.moveBall();
+            }
             this.paddle.drawPaddle();
             this.paddle.move();
             this.brick.drawBricks();
             this.brick.detectCollision(this.ball);
             this.paddle.detectCollision(this.ball);
-            // this.levelTwo(); 
+            this.levelTwo(); 
             this.gameOver();
             this.youWin();
         }, 10);
@@ -100,22 +110,25 @@ class Game {
 
     // initiates level two
     levelTwo() {
-        if(this.brick.score === 36) {
+        if(this.brick.score === 1 && this.level === 1) {
             this.clear();
             clearInterval(this.interval);
+            this.ball.reset();
             this.ctx.fillStyle = "blue";
             this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
             this.ctx.font = "60px Arial";
             this.ctx.fillStyle = "white"
             this.ctx.textAlign = "center";
             this.ctx.fillText("LEVEL 2", canvas.width/2, canvas.height/2);
-            this.paddle.width = 75;
+            this.paddle.width = 90;
             this.ball.dx = 4;
             this.ball.dy = -4;
-            this.brick.buildBricks();
             this.brick.columns = 9;
-            this.brick.padding = 10;
-            this.brick.offsetLeft = 140;
+            this.brick.offsetLeft = 160;
+            this.paddle.x = 405;
+            this.paddle.y = 570;
+            this.leveled = true;
+            this.level = 2;
             setTimeout(() => {
                 this.start();
             }, 2000);
@@ -128,20 +141,12 @@ class Game {
             this.clear();
             this.ctx.drawImage(this.gameOverImg, this.x, this.y, this.width, this.height);
             clearInterval(this.interval);
-            let buttonContainer = document.getElementById('buttons');
-            let restartBtn = document.createElement('button');
-            restartBtn.setAttribute('id', 'restart');
-            restartBtn.innerHTML = "RESTART";
-            buttonContainer.append(restartBtn);
-            restartBtn.onclick = function() {
-                console.log("clicked");
-            }
         }
     }
 
     // draws the you win image if you reach a score of 72
     youWin() {
-        if(this.brick.score === 72) {
+        if(this.brick.score === 63) {
             this.clear();
             this.ctx.drawImage(this.youWinImg, this.x, this.y, this.width, this.height);
             clearInterval(this.interval);

@@ -1,45 +1,40 @@
-#game-board {
-    text-align: center; 
-    margin-top: 60px;
+* {
+    margin: 0;
+    padding: 0;
 }
 
-#start-button {
-    margin-bottom: 10px;
+#game-board {
+    margin: 20px auto;
+    width: 900px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+    color: #FFFFFF;
+    padding: 10px;
+}
+
+.name {
+    font-size: 3rem;
+    width: 60%;
 }
 
 #lives {
-    position: absolute;
-    top: 1.5%;
-    right: 15%;
     font-size: 2.8rem;
 }
 
 #score {
-    position: absolute;
-    top: 1.5%;
-    left: 15%;
     font-size: 2.6rem;
+    width: 30%;
+}
+
+#health {
+    width: 10%;
+    margin-left: 10px;
 }
 
 #heart {
-    position: absolute;
-    top: 2%;
-    right: 18%;
+    margin-right: 5px;
 }
-
-#buttons {
-    position: absolute;
-    top: 10%;
-    left: 46%;
-    color: red;
-}
-
-#restart {
-    background-color: transparent;
-    color: red;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-}
-
-

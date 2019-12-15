@@ -17,12 +17,22 @@ class Brick extends Component {
         this.brickSound.src = "./sounds/brick_short.mp3";
     }
 
-    // build the wall of bricks to the canvas
+    // generates a random color for the bricks
+    getRandomColor() {
+        let letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
+
+    // build the wall of bricks
     buildBricks() {
         for(let c = 0; c < this.columns; c++) {
             this.bricks[c] = [];
             for(let r = 0; r < this.rows; r++) {
-                this.bricks[c][r] = { x: 0, y: 0, markerForDeletion: false };
+                this.bricks[c][r] = { x: 0, y: 0, markerForDeletion: false, color: this.getRandomColor()};
             }
         }
     }
@@ -38,7 +48,7 @@ class Brick extends Component {
                     this.bricks[c][r].y = brickY;
                     this.ctx.beginPath();
                     this.ctx.rect(brickX, brickY, this.width , this.height);
-                    this.ctx.fillStyle = "#654321";
+                    this.ctx.fillStyle = this.bricks[c][r].color;
                     this.ctx.fill();
                     this.ctx.closePath();
                 }
