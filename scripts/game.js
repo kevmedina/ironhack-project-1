@@ -110,7 +110,7 @@ class Game {
 
     // initiates level two
     levelTwo() {
-        if(this.brick.score === 1 && this.level === 1) {
+        if(this.brick.score === 36 && this.level === 1) {
             this.clear();
             clearInterval(this.interval);
             this.ball.reset();
@@ -144,7 +144,7 @@ class Game {
         }
     }
 
-    // draws the you win image if you reach a score of 72
+    // draws the you win image if you reach a score of 63
     youWin() {
         if(this.brick.score === 63) {
             this.clear();
